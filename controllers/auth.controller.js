@@ -1,15 +1,15 @@
-const {validateEmail} = require("../helpers/auth.helper");
-const {getUserByEmail, addUser} = require("../services/global.service");
+const { validateEmail } = require('../helpers/auth.helper');
+const { getUserByEmail, addUser } = require('../services/global.service');
 
 module.exports = {
 
     register: async (req, res) => {
-        const {email, password} = req.body;
+        const { email, password } = req.body;
 
         const validationResult = validateEmail(email);
 
         if (!validationResult) {
-            res.status(400).json({message: 'Incorrect format of email'});
+            res.status(400).json({ message: 'Incorrect format of email' });
             return;
         }
 
@@ -30,7 +30,7 @@ module.exports = {
     },
 
     login: async (req, res) => {
-        const {email, password} = req.body;
+        const { email, password } = req.body;
 
         const validationResult = validateEmail(email);
 
@@ -41,13 +41,12 @@ module.exports = {
 
         const user = await getUserByEmail(email);
 
-        if (!user || !(user?.password === password)) {
+        if (!user || !(user.password === password)) {
             res.redirect('/error/Incorrect credentials/login/Login');
             return;
         }
 
         return res.redirect('/users');
-
     }
 
-}
+};

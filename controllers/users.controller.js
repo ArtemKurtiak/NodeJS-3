@@ -1,4 +1,4 @@
-const {getUsers} = require("../services/global.service");
+const { getUsers } = require('../services/global.service');
 
 module.exports = {
 
@@ -13,14 +13,14 @@ module.exports = {
 
         const users = await getUsers();
 
-        const user = users.find((user) => user.id === Number(userId));
+        const existsUser = users.find((user) => user.id === Number(userId));
 
-        if (!user) {
+        if (!existsUser) {
             res.redirect('/error/User not found/users/Users');
             return;
         }
 
-        return res.render('user', { ...user })
+        return res.render('user', { ...existsUser });
     }
 
-}
+};
