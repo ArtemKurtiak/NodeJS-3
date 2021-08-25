@@ -1,5 +1,5 @@
 const { validateEmail } = require('../helpers/auth.helper');
-const { getUserByEmail, addUser } = require('../services/global.service');
+const { getUserByEmail, addUser } = require('../services/user.service');
 
 module.exports = {
 
@@ -41,7 +41,7 @@ module.exports = {
 
         const user = await getUserByEmail(email);
 
-        if (!user || !(user.password === password)) {
+        if (!user || user.password !== password) {
             res.redirect('/error/Incorrect credentials/login/Login');
             return;
         }

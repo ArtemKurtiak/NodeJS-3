@@ -1,4 +1,4 @@
-const { getUsers } = require('../services/global.service');
+const { getUsers } = require('../services/user.service');
 
 module.exports = {
 
